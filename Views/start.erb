@@ -1,0 +1,19 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>RPS Start</title>
+</head>
+<body>
+	<h1>Hello <%= @player_name %>. You've selected to play <%= @turns %> turns. Make your selection</h1>
+	<form action="/result" method="post">
+	  <input type="radio" name="choice" value="rock"> ROCK
+	  <input type="radio" name="choice" value="paper"> PAPER
+	  <input type="radio" name="choice" value="scissors"> SCISSORS 
+	  <br><br>
+	  <input type="submit">
+	  <input type="hidden" name="name" value=<%= @player_name %>>
+	  <input type="hidden" name="turns" value=<%= @turns %> >
+	</form>
+</body>
+</html>
