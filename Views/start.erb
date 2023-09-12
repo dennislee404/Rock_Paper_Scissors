@@ -5,7 +5,8 @@
 	<title>RPS Start</title>
 </head>
 <body>
-	<h1>Hello <%= @player_name %>. You've selected to play <%= @turns %> turns. Make your selection</h1>
+	<h1>Hello <%= @player_name %>. Please make your selection</h1>
+	<p>Round <%= @round %></p>
 	<form action="/result" method="post">
 	  <input type="radio" name="choice" value="rock"> ROCK
 	  <input type="radio" name="choice" value="paper"> PAPER
@@ -13,7 +14,11 @@
 	  <br><br>
 	  <input type="submit">
 	  <input type="hidden" name="name" value=<%= @player_name %>>
-	  <input type="hidden" name="turns" value=<%= @turns %> >
+	  <input type="hidden" name="turns" value=<%= @turns-1 %> >
+	  <input type="hidden" name="round" value=<%= @round+1 %>>
+	  <input type="hidden" name="win" value=<%= @win %>>
+	  <input type="hidden" name="draw" value=<%= @draw %>>
+	  <input type="hidden" name="lose" value=<%= @lose %>>
 	</form>
 </body>
 </html>
