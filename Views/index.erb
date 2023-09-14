@@ -3,16 +3,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>RPS</title>
-	<link rel="stylesheet" href="index_style.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 </head>
-<body>
-	<h1>Welcome to Rock Paper Scissors</h1>
-	<form action="/start" method="post">
-	  <label for="name"> Please enter your name.</label>
-	  <input type="text" name="name"> <br><br>
-	  <label for="turns"> Please select the number of turns you would like to play.</label>
-	  <input type="number" name="rounds" size=1 min=1 max=10><br><br>
-	  <input type="submit">
-	</form>
+<body style="margin-top: 60px; font-family: Papyrus; background-image: url('rps.jpeg'); background-repeat: no-repeat; background-attachment: fixed; background-size: cover; text-align: center">
+	<h1 style="font-size: 60px;	text-shadow: 2px 2px red">Welcome to Rock Paper Scissors</h1><br>
+	<div class = "container">
+	<div class = "row">
+		<div class = "col-1">
+			<p> Leaderboard </p>
+			<% session[:leaderboard].each do |(key, value)|%>
+				<%= key["player_name"] %> : <%= key["win_count"]%>
+			<% end %>
+		</div>
+		<div class = "col-11">
+			<form action="/start" method="post">
+			  <label for="name"> Please enter your name.</label>
+			  <input type="text" name="name"> <br><br>
+			  <label for="turns"> Please select the number of turns you would like to play.</label>
+			  <input type="number" name="rounds" size=1 min=1 max=10><br><br>
+			  <input type="submit">
+			</form>
+		</div>
+	</div>
+	</div>
 </body>
 </html>

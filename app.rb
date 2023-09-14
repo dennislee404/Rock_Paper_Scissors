@@ -7,12 +7,18 @@ enable :sessions
 #   erb :test
 # end
 
-get '/' do 
-  session[:leaderboard] = []
-  erb :main
-end
+# get '/' do 
+#   session[:leaderboard] = []
+#   erb :main
+# end
 
-get '/index' do 
+get '/' do 
+  if session[:leaderboard] == nil
+    session[:leaderboard] = []
+  else
+    session[:leaderboard] = session[:leaderboard]
+  end
+
   erb :index
 end
 
@@ -44,7 +50,12 @@ post '/result' do
     @draw = session[:results].count("Tie!")
     @lose = session[:results].count("Lose!")
 
-    session[:leaderboard] << {session[:player_name] => @win}
+    @scoreboard = {
+      "player_name" => session[:player_name],
+      "win_count" => @win
+       }
+
+    session[:leaderboard] << @scoreboard
     erb :result
   end
   
