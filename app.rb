@@ -1,69 +1,63 @@
 #https://sinatrarb.com/
 
 require 'sinatra'
+enable :sessions
+
+# get '/test' do 
+#   erb :test
+# end
 
 get '/' do 
+  session[:leaderboard] = []
+  erb :main
+end
+
+get '/index' do 
   erb :index
 end
 
 post '/start' do 
-  @player_name = params[:name]
-  @turns = params[:turns].to_i
-  @round  = 1
-  @win = 0
-  @draw = 0
-  @lose = 0
+  session[:player_name] = params[:name]
+  session[:rounds] = params[:rounds].to_i
+  session[:results] = []
 
   erb :start
 end
 
 post '/result' do 
-
-  @player_name = params[:name]
-  @turns = params[:turns].to_i
-  @round = params[:round].to_i
-  @win = params[:win].to_i
-  @draw = params[:draw].to_i
-  @lose = params[:lose].to_i
-
   @player_choice = params[:choice]
   @computer_choice = ["rock","paper","scissors"].sample
 
-  if @player_choice == @computer_choice
-    @draw += 1
-  else
-    if @player_choice == "rock"
-      if @computer_choice == "scissors"
-        @win += 1
-      else
-        @lose += 1
-      end
-    elsif @player_choice == "paper"
-      if @computer_choice == "rock"
-        @win += 1
-      else
-        @lose += 1
-      end
-    elsif @player_choice == "scissors"
-      if @computer_choice == "paper"
-        @win += 1
-      else
-        @lose += 1
-      end
-    end
-  end
+  result = check_game(@player_choice,@computer_choice)
+  session[:results] << result
 
-  if @win == @lose
-    @outcome = "Its a TIE!!!"
-  elsif @win > @lose
-    @outcome = "You WIN!!!"
-  elsif @lose > @win
-    @outcome = "You LOSE!!!"
-  end
+  # puts "========"
+  # puts @player_choice
+  # puts @computer_choice
+  # puts session[:results]
 
-  if @turns > 0
+  if session[:results].length < session[:rounds]
     erb :start
+
   else
+    @win = session[:results].count("Win!")
+    @draw = session[:results].count("Tie!")
+    @lose = session[:results].count("Lose!")
+
+    session[:leaderboard] << {session[:player_name] => @win}
     erb :result
+  end
+  
+end
+
+def check_game(player,computer)
+  if player == computer
+    return "Tie!"
+  elsif player == "rock" && computer == "scissors" or 
+        player == "paper" && computer == "rock" or 
+        player == "scissors" && computer == "paper"
+    return "Win!"
+  else
+    return "Lose!"
   end
 end

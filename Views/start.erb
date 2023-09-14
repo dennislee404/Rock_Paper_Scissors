@@ -3,22 +3,20 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>RPS Start</title>
+	<link rel="stylesheet" href="start_style.css">
 </head>
 <body>
-	<h1>Hello <%= @player_name %>. Please make your selection</h1>
-	<p>Round <%= @round %></p>
+	<h1>Hello <%= session[:player_name] %>. Please make your selection</h1>
+	<p>Round <%= session[:results].length+1 %>/<%= session[:rounds] %></p>
 	<form action="/result" method="post">
+		  <img src="rock.jpeg" height=160 width = 240 style="margin-right: 60">
+		  <img src="scissors.jpeg" height=160 width = 240 style="margin-right: 60">
+		  <img src="paper.jpeg" height=160 width = 240 ><br>
 	  <input type="radio" name="choice" value="rock"> ROCK
-	  <input type="radio" name="choice" value="paper"> PAPER
-	  <input type="radio" name="choice" value="scissors"> SCISSORS 
+	  <input type="radio" name="choice" value="scissors" style="margin-left: 70"> SCISSORS 
+	  <input type="radio" name="choice" value="paper" style="margin-left: 70"> PAPER
 	  <br><br>
-	  <input type="submit">
-	  <input type="hidden" name="name" value=<%= @player_name %>>
-	  <input type="hidden" name="turns" value=<%= @turns-1 %> >
-	  <input type="hidden" name="round" value=<%= @round+1 %>>
-	  <input type="hidden" name="win" value=<%= @win %>>
-	  <input type="hidden" name="draw" value=<%= @draw %>>
-	  <input type="hidden" name="lose" value=<%= @lose %>>
+	  <input type="image" src="submit.jpeg" alt="submit" height=40 width = 40>
 	</form>
 </body>
 </html>

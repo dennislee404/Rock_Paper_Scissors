@@ -3,13 +3,18 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>RPS Result</title>
+	<link rel="stylesheet" href="result_style.css">
 </head>
 <body>
-	<p><%= @player_name%></p>
-	<p>Win: <%= @win%></p>
-	<p>Draw: <%= @draw%></p>
-	<p>Lose: <%= @lose%></p>
+	<p>Results:</p>
+	<p>Win: <%= @win %> Draw: <%= @draw %> Lose: <%= @lose %></p><br><br><br><br><br><br><br>
 	<h1><%= @outcome %></h1>
-	<a href="/">Play again</a> 
+	<h3>Leaderboard</h3>
+	<% session[:leaderboard].each do |hash| %>
+		<% hash.each do |key,value| %>
+			<h5><%= key %> : <%= value %><h5>
+		<% end %>
+	<% end %>
+	<a href="/index">Play again</a> 
 </body>
 </html>

@@ -1,0 +1,14 @@
+
+  h1 {
+    font-size: 60px;
+  	text-shadow: 2px 2px red ;
+  }
+
+  body {
+    margin-top: 60px;
+    font-size: 40px;
+    font-family: Papyrus;
+    background-color: #6CD4FF;
+    text-align: center;
+  }
+

@@ -1,0 +1,25 @@
+h1 {
+	font-size: 60px;
+	text-shadow: 2px 2px red ;
+  text-align: center
+}
+
+body {
+  margin-top: 60px;
+  font-family: Papyrus;
+  background-image: url('rps.jpeg');
+  background-repeat: no-repeat;
+/*  background-attachment: fixed;*/
+  background-size: 100% 100%;
+/*  text-align: center*/
+}
+
+p {
+  font-size: 40px;
+  text-align: center
+}
+
+h3 {
+  align-self: start;
+  text-align: left;
+}
